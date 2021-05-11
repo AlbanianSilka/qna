@@ -1,6 +1,8 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -11,6 +13,7 @@ module Qna
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     config.generators do |g|
+      g.template_engine = :slim
       g.test_framework :rspec,
                        fixtures: true,
                        view_spec: false,
