@@ -1,22 +1,10 @@
-= render 'common/errors', resource: @answer
-.row
-  h2= @question.title
-  p= @question.body
-  - if user_signed_in? && current_user.author_of?(@question)
-    = link_to 'Delete', question_path(@question), method: :delete
+h1 = @question.title
+p= @question.body
 
-.row
-  - if user_signed_in?
-    h4 Your answer
-    = form_for [@question, @answer] do |f|
-      .form-group
-        = f.label :body
-        = f.text_area :body, class: 'form-control'
-      .form-group
-        .actions
-          = f.submit 'Give an answer', class: 'btn btn-primary'
+div.answers
+  = render 'answers'
 
-.row.answers
-  h4 Answers
-  - @question.answers.find_each do |answer|
-    = render 'answers/answer', answer: answer, question: @question
+= form_for [@question, @answer], remote: true do |f|
+  = f.label :body, 'Your answer'
+  = f.text_area :body
+  = f.submit 'Create'
