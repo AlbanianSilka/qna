@@ -14,7 +14,7 @@ feature 'Create question', %q{
     visit questions_path
     click_on 'Ask question'
     fill_in 'Title', with: 'Test question'
-    fill_in 'Body', with: 'text text'
+    fill_in 'Body', with: 'question'
     click_on 'Create'
 
     expect(page).to have_content ''
